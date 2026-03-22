@@ -25,6 +25,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .cur-ring{width:28px;height:28px;border:1px solid rgba(212,175,55,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
 .cur-ring.on{width:44px;height:44px;border-color:var(--gold);border-radius:0}
 @media(hover:none){.cur,.cur-ring{display:none}body{cursor:auto}}
+@media(max-width:900px){.cur,.cur-ring{display:none}body{cursor:auto}}
 /* ANIMATIONS */
 @keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
 @keyframes scan{0%{transform:translateY(-100%)}100%{transform:translateY(400%)}}
@@ -242,6 +243,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
   .pfeat-info{border-right:none;border-bottom:1px solid var(--border)}
   .pvis{display:none}
   .case-row{grid-template-columns:1fr}
+  .sv-nav{display:none!important}
+  .sv-main{touch-action:pan-y}
   .contact-grid{grid-template-columns:1fr}
   .contact-l{border-right:none;border-bottom:1px solid var(--border)}
   .container{padding:0 1.5rem}
@@ -339,7 +342,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
 /* Mobile: hide inline photo when on small screens where left panel already shows */
 
 @media(max-width:900px){
-  .hero-inline-photo{display:inline-block}
+  .hero-inline-photo{display:block!important}
   .hero-geo-1{right:4%;top:12%}
   .hero-geo-2{display:none}
   .hero-dots{right:1%;width:80px}
@@ -785,6 +788,32 @@ document.querySelectorAll('a,button,.sv-btn,.sv-thumb,.ic,.pcard').forEach(funct
 // ── REVEAL ──
 var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:"0px 0px -50px 0px"});
 document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
+
+// ── TOUCH SWIPE for slide viewers ──
+(function(){
+  function addSwipe(containerId, onSwipe) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    var startX = 0, startY = 0;
+    el.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, {passive: true});
+    el.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        onSwipe(dx < 0 ? 1 : -1);
+      }
+    }, {passive: true});
+  }
+  window.addEventListener('DOMContentLoaded', function() {
+    addSwipe('svYukioBiz', function(dir){ ybc=(ybc+dir+YUKIO_BIZ.length)%YUKIO_BIZ.length; ybRender(); });
+    addSwipe('svYukioProd', function(dir){ ypc=(ypc+dir+YUKIO_PROD.length)%YUKIO_PROD.length; ypRender(); });
+    addSwipe('svDuo', function(dir){ dc=(dc+dir+DUO.length)%DUO.length; duoRender(); });
+  });
+})();
+
 </script>
 </body>
 </html>
