@@ -272,7 +272,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
 }
 
 /* ── HERO INLINE PHOTO (above name) ── */
-.mob-photo{display:none!important;position:relative;margin-bottom:1.5rem}
+.mob-photo{display:none!important;position:relative;margin-bottom:1.5rem;width:fit-content;width:-webkit-fit-content}
 .mob-photo img{
   width:100px;
   height:100px;
@@ -344,7 +344,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
 /* Mobile: hide inline photo when on small screens where left panel already shows */
 
 @media(max-width:900px){
-  .mob-photo{display:block!important;position:relative;margin-bottom:1.5rem}
+  .mob-photo{display:block!important;position:relative;margin-bottom:1.5rem;width:fit-content;width:-webkit-fit-content}
   .mob-photo img{width:100px;height:100px;object-fit:cover;object-position:center 15%;display:block;filter:contrast(1.05)}
   .hero-geo-1{right:4%;top:12%}
   .hero-geo-2{display:none}
