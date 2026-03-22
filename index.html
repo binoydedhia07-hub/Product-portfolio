@@ -224,6 +224,13 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
   nav{padding:0 1.5rem}.nav-links{display:none}
   .hero{grid-template-columns:1fr;grid-template-rows:auto}
   .hero-photo-panel{display:none}
+  /* Kill cascade animations on mobile — elements stay visible */
+  .hero-content-panel .hero-eyebrow,
+  .hero-content-panel .hero-name,
+  .hero-content-panel .hero-desc,
+  .hero-content-panel .hero-actions,
+  .hero-content-panel .hero-stats,
+  .hero-content-panel .hero-tags { animation:none!important; opacity:1!important; transform:none!important }
   .hero-content-panel{padding:3rem 1.5rem}
   .hero-name{font-size:clamp(3.5rem,12vw,5.5rem)}
   .hero-stats{flex-wrap:wrap;gap:1rem}
@@ -255,7 +262,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
   .impact-grid{grid-template-columns:1fr 1fr}
   .ic-n{font-size:1.6rem}
   .ic{padding:1.1rem .9rem}
-  .hero{grid-template-rows:220px auto}
+  .hero{grid-template-rows:auto}
   .hero-name{font-size:clamp(3rem,11vw,4.5rem)}
   .hero-actions{flex-direction:column;align-items:flex-start}
   .hero-content-panel{padding:2.5rem 1.25rem}
@@ -265,12 +272,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
 }
 
 /* ── HERO INLINE PHOTO (above name) ── */
-.mob-photo{
-  position:relative;
-  display:none!important;
-  margin-bottom:1.75rem;
-  flex-shrink:0;
-}
+.mob-photo{display:none!important;position:relative;margin-bottom:1.5rem}
 .mob-photo img{
   width:100px;
   height:100px;
@@ -342,8 +344,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
 /* Mobile: hide inline photo when on small screens where left panel already shows */
 
 @media(max-width:900px){
-  .mob-photo{display:block!important;position:relative}
-  .mob-photo img{width:110px;height:110px}
+  .mob-photo{display:block!important;position:relative;margin-bottom:1.5rem}
+  .mob-photo img{width:100px;height:100px;object-fit:cover;object-position:center 15%;display:block;filter:contrast(1.05)}
   .hero-geo-1{right:4%;top:12%}
   .hero-geo-2{display:none}
   .hero-dots{right:1%;width:80px}
