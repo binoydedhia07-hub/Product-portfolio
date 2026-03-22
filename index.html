@@ -103,14 +103,14 @@ section{padding:7rem 0;position:relative}
 .sec-title em{font-style:italic;color:var(--gold)}
 /* IMPACT */
 #impact{background:var(--black)}
-.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);width:100%}
-.ic{padding:2.5rem 2rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;transition:background .25s;min-width:0}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);width:100%;overflow:hidden}
+.ic{padding:2.5rem 2rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:visible;transition:background .25s;min-width:0}
 .ic:nth-child(4n){border-right:none}
 .ic:nth-child(5),.ic:nth-child(6),.ic:nth-child(7),.ic:nth-child(8){border-bottom:none}
 .ic::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .3s;pointer-events:none}
 .ic:hover{background:var(--black3)}
 .ic:hover::before{transform:scaleX(1)}
-.ic-n{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;line-height:1;margin-bottom:.6rem;letter-spacing:-.04em;background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ic-n{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;line-height:1;margin-bottom:.6rem;letter-spacing:-.04em;background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;word-break:break-word;overflow-wrap:break-word;white-space:normal}
 .ic-l{font-size:.78rem;color:var(--grey);line-height:1.55;font-weight:300;word-break:break-word;overflow-wrap:break-word;white-space:normal}
 /* EXPERIENCE */
 #experience{background:var(--black2)}
@@ -221,9 +221,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
 /* RESPONSIVE */
 @media(max-width:900px){
   nav{padding:0 1.5rem}.nav-links{display:none}
-  .hero{grid-template-columns:1fr;grid-template-rows:280px auto}
-  .hero-photo-panel{align-items:center}
-  .hero-photo-img{object-fit:cover;object-position:center 20%;height:100%}
+  .hero{grid-template-columns:1fr;grid-template-rows:auto}
+  .hero-photo-panel{display:none}
   .hero-content-panel{padding:3rem 1.5rem}
   .hero-name{font-size:clamp(3.5rem,12vw,5.5rem)}
   .hero-stats{flex-wrap:wrap;gap:1rem}
@@ -231,6 +230,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
   .hs:last-child{border-bottom:none}
   .impact-grid{grid-template-columns:repeat(2,1fr)}
   .ic:nth-child(2n){border-right:none}
+  .ic-n{font-size:1.8rem;letter-spacing:-.02em}
+  .ic{padding:1.25rem 1rem;min-width:0;width:100%}
   .ic:nth-child(5),.ic:nth-child(6){border-bottom:none}
   .ic:nth-child(3),.ic:nth-child(4){border-bottom:1px solid var(--border)}
   .exp-item{grid-template-columns:1fr;gap:1rem}
@@ -248,6 +249,9 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:1.75re
   footer{flex-direction:column;gap:.75rem;text-align:center;padding:1.5rem}
 }
 @media(max-width:540px){
+  .impact-grid{grid-template-columns:1fr 1fr}
+  .ic-n{font-size:1.6rem}
+  .ic{padding:1.1rem .9rem}
   .hero{grid-template-rows:220px auto}
   .hero-name{font-size:clamp(3rem,11vw,4.5rem)}
   .hero-actions{flex-direction:column;align-items:flex-start}
@@ -525,7 +529,7 @@ footer a:hover { color: var(--gold) }
       <div class="hip-corner hip-tl"></div>
       <div class="hip-corner hip-br"></div>
     </div>
-    <p class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Senior Product Manager &middot; Mumbai</p>
+    <p class="hero-eyebrow"><span class="hero-eyebrow-line"></span>Senior Product Manager &middot; Bangalore</p>
     <h1 class="hero-name">
       <span class="hero-name-first">Binoy</span>
       <span class="hero-name-last">Dedhia</span>
